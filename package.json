@@ -1,0 +1,50 @@
+{
+    "name": "ryo-core-js",
+    "version": "1.2.0",
+    "description": "The JS library containing Ryo crypto functions for use with lightweight wallets",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ryo-currency/ryo-core-js.git"
+    },
+    "scripts": {
+        "format": "find . -name '*.js*' | xargs prettier --write --config ./.prettierrc --config-precedence file-override",
+        "test": "mocha"
+    },
+    "keywords": [
+        "ryo",
+        "javascript",
+        "js",
+        "lightweight",
+        "lightwallet",
+        "wallet",
+        "crypto",
+        "script",
+        "utility",
+        "tool"
+    ],
+    "author": "MyMonero",
+    "contributors": [
+        "Ryo-currency <contact@ryo-currency.com> (https://ryo-currency.com/)"
+    ],
+    "license": "See LICENSE.TXT. Copyright (c) 2014-2018, MyMonero.com. All rights reserved.",
+    "bugs": {
+        "url": "https://github.com/ryo-currency/ryo-core-js/issues"
+    },
+    "homepage": "https://github.com/ryo-currency/ryo-core-js#readme",
+    "dependencies": {
+        "big-integer": "^1.6.41"
+    },
+    "devDependencies": {
+        "mocha": "^5.2.0"
+    },
+    "jest": {
+        "testEnvironment": "node",
+        "verbose": true,
+        "coveragePathIgnorePatterns": [
+            "node_modules",
+            "ryo_utils/RyoCoreCpp.js",
+            "tests/emjs/*"
+        ]
+    }
+}
