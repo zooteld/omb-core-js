@@ -32,9 +32,9 @@
 // Modified to add RingCT support by luigi1111 (2017)
 //
 
-import RyoCoreCpp from "./RyoCoreCpp"
+import RyoCoreCpp from "../dist/RyoCoreCpp"
 if(!process || !process.versions) {
-    require("./RyoCoreCpp.wasm")
+    require("../dist/RyoCoreCpp.wasm")
 }
 
 import * as nettype_utils from "./ryo_utils_nettype"

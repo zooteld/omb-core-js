@@ -66,7 +66,7 @@ exports.default = function (options) {
     });
 };
 
-var _RyoCoreCpp = require("./RyoCoreCpp");
+var _RyoCoreCpp = require("../dist/RyoCoreCpp");
 
 var _RyoCoreCpp2 = _interopRequireDefault(_RyoCoreCpp);
 
@@ -81,7 +81,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 if (!process || !process.versions) {
-    require("./RyoCoreCpp.wasm");
+    require("../dist/RyoCoreCpp.wasm");
 }
 
 var BigInt = require("big-integer");

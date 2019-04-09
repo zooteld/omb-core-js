@@ -8,7 +8,7 @@
         "url": "git+https://github.com/ryo-currency/ryo-core-js.git"
     },
     "scripts": {
-        "build": "babel ryo_utils --presets babel-preset-es2015 --out-dir dist && cp ryo_utils/RyoCoreCpp.wasm dist"
+        "build": "babel src --presets babel-preset-es2015 --out-dir dist"
     },
     "keywords": [
         "ryo",
@@ -22,11 +22,11 @@
         "utility",
         "tool"
     ],
-    "author": "MyMonero",
+    "author": "Ryo-currency <contact@ryo-currency.com> (https://ryo-currency.com/)",
     "contributors": [
-        "Ryo-currency <contact@ryo-currency.com> (https://ryo-currency.com/)"
+        "MyMonero"
     ],
-    "license": "See LICENSE.TXT. Copyright (c) 2014-2018, MyMonero.com. All rights reserved.",
+    "license": "BSD-3-Clause",
     "bugs": {
         "url": "https://github.com/ryo-currency/ryo-core-js/issues"
     },

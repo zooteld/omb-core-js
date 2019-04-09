@@ -9,7 +9,7 @@ include_directories("build/boost/include") # must exist already - run bin/build-
 #
 include_directories("src")
 #
-set(RYO_CORE_CPP "src/submodules/ryo-core-cpp")
+set(RYO_CORE_CPP "contrib/ryo-core-cpp")
 set(RYO_CORE_CPP_SRC "${RYO_CORE_CPP}/src")
 include_directories("${RYO_CORE_CPP}/src")
 #
