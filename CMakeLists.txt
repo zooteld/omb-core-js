@@ -60,6 +60,7 @@ set(
     ${RYO_SRC}/cryptonote_basic/account.cpp
     ${RYO_SRC}/cryptonote_basic/cryptonote_format_utils.cpp
 
+    ${RYO_SRC}/crypto/crypto.h
     ${RYO_SRC}/crypto/crypto.cpp
     ${RYO_SRC}/crypto/hash.c
     ${RYO_SRC}/crypto/chacha.c
@@ -193,7 +194,7 @@ set(
     -s EXPORT_ES6=1 \
     -s ASSERTIONS=0 \
     -s ERROR_ON_UNDEFINED_SYMBOLS=0 \
-    --post-js ${CMAKE_CURRENT_LIST_DIR}/src/module-post.js \
+    --post-js ${CMAKE_CURRENT_LIST_DIR}/bin/module-post.js \
     -s NO_DYNAMIC_EXECUTION=1 \
     -s \"BINARYEN_TRAP_MODE='clamp'\" \
     -s ALLOW_MEMORY_GROWTH=1 \
