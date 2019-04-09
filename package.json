@@ -2,14 +2,13 @@
     "name": "ryo-core-js",
     "version": "1.2.0",
     "description": "The JS library containing Ryo crypto functions for use with lightweight wallets",
-    "main": "index.js",
+    "main": "dist/index.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ryo-currency/ryo-core-js.git"
     },
     "scripts": {
-        "format": "find . -name '*.js*' | xargs prettier --write --config ./.prettierrc --config-precedence file-override",
-        "test": "mocha"
+        "build": "babel ryo_utils --presets babel-preset-es2015 --out-dir dist && cp ryo_utils/RyoCoreCpp.wasm dist"
     },
     "keywords": [
         "ryo",
@@ -36,15 +35,8 @@
         "big-integer": "^1.6.41"
     },
     "devDependencies": {
-        "mocha": "^5.2.0"
-    },
-    "jest": {
-        "testEnvironment": "node",
-        "verbose": true,
-        "coveragePathIgnorePatterns": [
-            "node_modules",
-            "ryo_utils/RyoCoreCpp.js",
-            "tests/emjs/*"
-        ]
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-preset-es2015": "^6.24.1"
     }
 }

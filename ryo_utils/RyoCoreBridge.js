@@ -33,7 +33,10 @@
 //
 
 import RyoCoreCpp from "./RyoCoreCpp"
-import RyoCoreCppModule from "./RyoCoreCpp.wasm"
+if(!process || !process.versions) {
+    require("./RyoCoreCpp.wasm")
+}
+
 import * as nettype_utils from "./ryo_utils_nettype"
 
 const BigInt = require("big-integer")
@@ -538,7 +541,7 @@ export default function(options) {
         let Module_template = {
             locateFile: function(base, dir) {
                 if(base.endsWith(".wasm")) {
-                    if(process && process.versions && (process.versions.electron !== undefined)) {
+                    if(process && process.versions) {
                         return require("path").format({ dir, base })
                     } else {
                         return RyoCoreCppModule

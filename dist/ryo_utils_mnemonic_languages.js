@@ -27,17 +27,34 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-"use strict"
-//
-// NOTE: The main downside to using an index.js file like this is that it will pull in all the code - rather than the consumer requiring code module-by-module
-// It's of course possible to construct your own stripped-down index.[custom name].js file for, e.g., special webpack bundling usages.
+"use strict";
 
-export {default as ryo_config} from "./ryo_utils/ryo_config"
-export {default as ryo_utils_promise} from "./ryo_utils/ryo_utils"
-export {default as ryo_utils_money_format} from "./ryo_utils/ryo_utils_money_format"
-export * as ryo_utils_mnemonic_languages from "./ryo_utils/ryo_utils_mnemonic_languages"
-export * as ryo_utils_nettype from "./ryo_utils/ryo_utils_nettype"
-export * as ryo_utils_request_uri from "./ryo_utils/ryo_utils_request_uri"
-export * as ryo_utils_keyimage_cache from "./ryo_utils/ryo_utils_keyimage_cache"
-export * as ryo_utils_payment_id from "./ryo_utils/ryo_utils_payment_id"
-export * as ryo_utils_tx_parsing from "./ryo_utils/ryo_utils_tx_parsing"
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.compatible_code_from_locale = compatible_code_from_locale;
+exports.compatible_code_from_language = compatible_code_from_language;
+var supported_short_codes = exports.supported_short_codes = ["en", "nl", "fr", "es", "pt", "ja", "it", "de", "ru", "zh", // chinese (simplified)
+"eo", "jbo" // Lojban
+];
+
+var mnemonic_languages = exports.mnemonic_languages = ["English", "Nederlands", "Français", "Español", "Português", "日本語", "Italiano", "Deutsch", "Русский", "简体中文 (中国)", "Esperanto", "Lojban"];
+
+function compatible_code_from_locale(locale_string) {
+    for (var i = 0; i < supported_short_codes.length; i++) {
+        var short_code = supported_short_codes[i];
+        if (locale_string.indexOf(short_code) == 0) {
+            return short_code;
+        }
+    }
+    throw "Didn't find a code";
+}
+
+function compatible_code_from_language(language_string) {
+    for (var i = 0; i < mnemonic_languages.length; i++) {
+        if (language_string == mnemonic_languages[i]) {
+            return supported_short_codes[i];
+        }
+    }
+    throw "Didn't find a code";
+}
