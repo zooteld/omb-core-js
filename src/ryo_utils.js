@@ -42,6 +42,7 @@ const fn_names = [
     "seed_and_keys_from_mnemonic",
     "validate_components_for_login",
     // "address_and_keys_from_seed",
+    "secret_key_to_public_key",
     "generate_key_image",
     "generate_key_derivation",
     "derive_public_key",

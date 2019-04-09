@@ -196,8 +196,8 @@ var RyoCoreCpp = function () {
     }function updateGlobalBufferViews() {
       Module["HEAP8"] = HEAP8 = new Int8Array(buffer);Module["HEAP16"] = HEAP16 = new Int16Array(buffer);Module["HEAP32"] = HEAP32 = new Int32Array(buffer);Module["HEAPU8"] = HEAPU8 = new Uint8Array(buffer);Module["HEAPU16"] = HEAPU16 = new Uint16Array(buffer);Module["HEAPU32"] = HEAPU32 = new Uint32Array(buffer);Module["HEAPF32"] = HEAPF32 = new Float32Array(buffer);Module["HEAPF64"] = HEAPF64 = new Float64Array(buffer);
     }var STATIC_BASE = 1024,
-        DYNAMIC_BASE = 5894720,
-        DYNAMICTOP_PTR = 651584;function abortOnCannotGrowMemory() {
+        DYNAMIC_BASE = 5894176,
+        DYNAMICTOP_PTR = 651040;function abortOnCannotGrowMemory() {
       abort("Cannot enlarge memory arrays. Either (1) compile with  -s TOTAL_MEMORY=X  with X higher than the current value " + TOTAL_MEMORY + ", (2) compile with  -s ALLOW_MEMORY_GROWTH=1  which allows increasing the size at runtime, or (3) if you want malloc to return NULL (0) instead of this abort, compile with  -s ABORTING_MALLOC=0 ");
     }var byteLength;try {
       byteLength = Function.prototype.call.bind(Object.getOwnPropertyDescriptor(ArrayBuffer.prototype, "byteLength").get);byteLength(new ArrayBuffer(4));
@@ -427,7 +427,7 @@ var RyoCoreCpp = function () {
         __GLOBAL__sub_I_crypto_cpp();
       } }, { func: function func() {
         __GLOBAL__sub_I_cryptonote_tx_utils_cpp();
-      } });var STATIC_BUMP = 650816;Module["STATIC_BASE"] = STATIC_BASE;Module["STATIC_BUMP"] = STATIC_BUMP;function ___assert_fail(condition, filename, line, func) {
+      } });var STATIC_BUMP = 650272;Module["STATIC_BASE"] = STATIC_BASE;Module["STATIC_BUMP"] = STATIC_BUMP;function ___assert_fail(condition, filename, line, func) {
       abort("Assertion failed: " + UTF8ToString(condition) + ", at: " + [filename ? UTF8ToString(filename) : "unknown filename", line, func ? UTF8ToString(func) : "unknown function"]);
     }function ___atomic_fetch_add_8(ptr, vall, valh, memmodel) {
       var l = HEAP32[ptr >> 2];var h = HEAP32[ptr + 4 >> 2];HEAP32[ptr >> 2] = _i64Add(l, h, vall, valh);HEAP32[ptr + 4 >> 2] = getTempRet0();return (setTempRet0(h), l) | 0;
@@ -2601,7 +2601,7 @@ var RyoCoreCpp = function () {
       }updateGlobalBuffer(replacement);updateGlobalBufferViews();TOTAL_MEMORY = newSize;HEAPU32[DYNAMICTOP_PTR >> 2] = requestedSize;return true;
     }function _getenv(name) {
       if (name === 0) return 0;name = UTF8ToString(name);if (!ENV.hasOwnProperty(name)) return 0;if (_getenv.ret) _free(_getenv.ret);_getenv.ret = allocateUTF8(ENV[name]);return _getenv.ret;
-    }var ___tm_timezone = (stringToUTF8("GMT", 651728, 4), 651728);function _gmtime_r(time, tmPtr) {
+    }var ___tm_timezone = (stringToUTF8("GMT", 651184, 4), 651184);function _gmtime_r(time, tmPtr) {
       var date = new Date(HEAP32[time >> 2] * 1e3);HEAP32[tmPtr >> 2] = date.getUTCSeconds();HEAP32[tmPtr + 4 >> 2] = date.getUTCMinutes();HEAP32[tmPtr + 8 >> 2] = date.getUTCHours();HEAP32[tmPtr + 12 >> 2] = date.getUTCDate();HEAP32[tmPtr + 16 >> 2] = date.getUTCMonth();HEAP32[tmPtr + 20 >> 2] = date.getUTCFullYear() - 1900;HEAP32[tmPtr + 24 >> 2] = date.getUTCDay();HEAP32[tmPtr + 36 >> 2] = 0;HEAP32[tmPtr + 32 >> 2] = 0;var start = Date.UTC(date.getUTCFullYear(), 0, 1, 0, 0, 0, 0);var yday = (date.getTime() - start) / (1e3 * 60 * 60 * 24) | 0;HEAP32[tmPtr + 28 >> 2] = yday;HEAP32[tmPtr + 40 >> 2] = ___tm_timezone;return tmPtr;
     }function _llvm_bswap_i64(l, h) {
       var retl = _llvm_bswap_i32(h) >>> 0;var reth = _llvm_bswap_i32(l) >>> 0;return (setTempRet0(reth), retl) | 0;
@@ -2802,7 +2802,7 @@ var RyoCoreCpp = function () {
       var ret = Date.now() / 1e3 | 0;if (ptr) {
         HEAP32[ptr >> 2] = ret;
       }return ret;
-    }var ___dso_handle = 651664;FS.staticInit();__ATINIT__.unshift(function () {
+    }var ___dso_handle = 651120;FS.staticInit();__ATINIT__.unshift(function () {
       if (!Module["noFSInit"] && !FS.init.initialized) FS.init();
     });__ATMAIN__.push(function () {
       FS.ignorePermissions = false;

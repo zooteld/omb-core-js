@@ -38,7 +38,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var fn_names = ["is_subaddress", "is_integrated_address", "new_payment_id", "new_int_addr_from_addr_and_short_pid", "decode_address", "newly_created_wallet", "are_equal_mnemonics", "mnemonic_from_seed", "seed_and_keys_from_mnemonic", "validate_components_for_login",
 // "address_and_keys_from_seed",
-"generate_key_image", "generate_key_derivation", "derive_public_key", "derive_subaddress_public_key", "decodeRct", "estimate_rct_tx_size", "calculate_fee", "create_signed_transaction", "convert_blob", "construct_block_blob", "get_block_id"];
+"secret_key_to_public_key", "generate_key_image", "generate_key_derivation", "derive_public_key", "derive_subaddress_public_key", "decodeRct", "estimate_rct_tx_size", "calculate_fee", "create_signed_transaction", "convert_blob", "construct_block_blob", "get_block_id"];
 
 var ryoUtils_promise = new Promise(function (resolve, reject) {
     require("./RyoCoreBridge").default({}).then(function (coreBridge_instance) {

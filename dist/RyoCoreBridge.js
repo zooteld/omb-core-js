@@ -315,6 +315,23 @@ var RyoCoreBridge = function () {
         //     }
         // }
 
+
+    }, {
+        key: "secret_key_to_public_key",
+        value: function secret_key_to_public_key(sec_key) {
+            if (sec_key.length !== 64) return { err_msg: "Invalid sec_key length" };
+
+            var args = {
+                sec_key_string: sec_key
+            };
+            var args_str = JSON.stringify(args);
+            var ret_string = this.Module.secret_key_to_public_key(args_str);
+            var ret = JSON.parse(ret_string);
+            if (typeof ret.err_msg !== "undefined" && ret.err_msg) {
+                return { err_msg: ret.err_msg };
+            }
+            return ret.retVal;
+        }
     }, {
         key: "generate_key_image",
         value: function generate_key_image(tx_pub, view_sec, spend_pub, spend_sec, output_index) {

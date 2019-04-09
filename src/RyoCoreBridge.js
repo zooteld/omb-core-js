@@ -260,6 +260,24 @@ class RyoCoreBridge {
     //     }
     // }
 
+
+    secret_key_to_public_key(sec_key) {
+        if(sec_key.length !== 64)
+            return { err_msg: "Invalid sec_key length" }
+
+        const args = {
+            sec_key_string: sec_key
+        }
+        const args_str = JSON.stringify(args)
+        const ret_string = this.Module.secret_key_to_public_key(args_str)
+        const ret = JSON.parse(ret_string)
+        if(typeof ret.err_msg !== "undefined" && ret.err_msg) {
+            return { err_msg: ret.err_msg }
+        }
+        return ret.retVal
+    }
+
+
     generate_key_image(tx_pub, view_sec, spend_pub, spend_sec, output_index) {
         if(tx_pub.length !== 64)
             return { err_msg: "Invalid tx_pub length" }
