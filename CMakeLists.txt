@@ -3,31 +3,31 @@ cmake_minimum_required(VERSION 3.4.1)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-project(RyoCoreCpp)
+project(ombCoreCpp)
 #
 include_directories("build/boost/include") # must exist already - run bin/build-boost-emscripten.sh
 #
 include_directories("src")
 #
-set(RYO_CORE_CPP "src/submodules/ryo-core-cpp")
-set(RYO_CORE_CPP_SRC "${RYO_CORE_CPP}/src")
-include_directories("${RYO_CORE_CPP}/src")
+set(omb_CORE_CPP "src/submodules/omb-core-cpp")
+set(omb_CORE_CPP_SRC "${omb_CORE_CPP}/src")
+include_directories("${omb_CORE_CPP}/src")
 #
-set(RYO_SRC "${RYO_CORE_CPP}/contrib/ryo-core-custom")
-include_directories(${RYO_SRC})
-include_directories("${RYO_SRC}/epee/include")
-include_directories("${RYO_SRC}/common")
-include_directories("${RYO_SRC}/vtlogger")
-include_directories("${RYO_SRC}/crypto")
-include_directories("${RYO_SRC}/cryptonote_basic")
-include_directories("${RYO_SRC}/multisig")
-include_directories("${RYO_SRC}/cryptonote_core")
-include_directories("${RYO_SRC}/cryptonote_protocol")
-include_directories("${RYO_SRC}/wallet")
-include_directories("${RYO_SRC}/rpc")
-include_directories("${RYO_SRC}/mnemonics")
-include_directories("${RYO_SRC}/contrib/libsodium/include") # support sodium/… paths
-include_directories("${RYO_SRC}/contrib/libsodium/include/sodium")
+set(omb_SRC "${omb_CORE_CPP}/contrib/omb-core-custom")
+include_directories(${omb_SRC})
+include_directories("${omb_SRC}/epee/include")
+include_directories("${omb_SRC}/common")
+include_directories("${omb_SRC}/vtlogger")
+include_directories("${omb_SRC}/crypto")
+include_directories("${omb_SRC}/cryptonote_basic")
+include_directories("${omb_SRC}/multisig")
+include_directories("${omb_SRC}/cryptonote_core")
+include_directories("${omb_SRC}/cryptonote_protocol")
+include_directories("${omb_SRC}/wallet")
+include_directories("${omb_SRC}/rpc")
+include_directories("${omb_SRC}/mnemonics")
+include_directories("${omb_SRC}/contrib/libsodium/include") # support sodium/… paths
+include_directories("${omb_SRC}/contrib/libsodium/include/sodium")
 #
 # keeping test files in a separate source directory
 # file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} test/test_*.cpp)
@@ -37,67 +37,67 @@ set(
     #
     src/index.cpp
     #
-    ${RYO_CORE_CPP_SRC}/ryo_address_utils.hpp
-    ${RYO_CORE_CPP_SRC}/ryo_address_utils.cpp
-    ${RYO_CORE_CPP_SRC}/ryo_paymentID_utils.hpp
-    ${RYO_CORE_CPP_SRC}/ryo_paymentID_utils.cpp
-    ${RYO_CORE_CPP_SRC}/ryo_key_image_utils.hpp
-    ${RYO_CORE_CPP_SRC}/ryo_key_image_utils.cpp
-    ${RYO_CORE_CPP_SRC}/ryo_transfer_utils.hpp
-    ${RYO_CORE_CPP_SRC}/ryo_transfer_utils.cpp
-    ${RYO_CORE_CPP_SRC}/ryo_fork_rules.hpp
-    ${RYO_CORE_CPP_SRC}/ryo_fork_rules.cpp
-    ${RYO_CORE_CPP_SRC}/ryo_wallet_utils.hpp
-    ${RYO_CORE_CPP_SRC}/ryo_wallet_utils.cpp
-    ${RYO_CORE_CPP_SRC}/ryo_mining_utils.hpp
-    ${RYO_CORE_CPP_SRC}/ryo_mining_utils.cpp
-    ${RYO_CORE_CPP_SRC}/serial_bridge_index.hpp
-    ${RYO_CORE_CPP_SRC}/serial_bridge_index.cpp
-    ${RYO_CORE_CPP_SRC}/tools__ret_vals.hpp
-    ${RYO_CORE_CPP_SRC}/tools__ret_vals.cpp
+    ${omb_CORE_CPP_SRC}/omb_address_utils.hpp
+    ${omb_CORE_CPP_SRC}/omb_address_utils.cpp
+    ${omb_CORE_CPP_SRC}/omb_paymentID_utils.hpp
+    ${omb_CORE_CPP_SRC}/omb_paymentID_utils.cpp
+    ${omb_CORE_CPP_SRC}/omb_key_image_utils.hpp
+    ${omb_CORE_CPP_SRC}/omb_key_image_utils.cpp
+    ${omb_CORE_CPP_SRC}/omb_transfer_utils.hpp
+    ${omb_CORE_CPP_SRC}/omb_transfer_utils.cpp
+    ${omb_CORE_CPP_SRC}/omb_fork_rules.hpp
+    ${omb_CORE_CPP_SRC}/omb_fork_rules.cpp
+    ${omb_CORE_CPP_SRC}/omb_wallet_utils.hpp
+    ${omb_CORE_CPP_SRC}/omb_wallet_utils.cpp
+    ${omb_CORE_CPP_SRC}/omb_mining_utils.hpp
+    ${omb_CORE_CPP_SRC}/omb_mining_utils.cpp
+    ${omb_CORE_CPP_SRC}/serial_bridge_index.hpp
+    ${omb_CORE_CPP_SRC}/serial_bridge_index.cpp
+    ${omb_CORE_CPP_SRC}/tools__ret_vals.hpp
+    ${omb_CORE_CPP_SRC}/tools__ret_vals.cpp
     #
-    ${RYO_SRC}/cryptonote_basic/cryptonote_basic_impl.cpp
-    ${RYO_SRC}/cryptonote_basic/account.cpp
-    ${RYO_SRC}/cryptonote_basic/cryptonote_format_utils.cpp
+    ${omb_SRC}/cryptonote_basic/cryptonote_basic_impl.cpp
+    ${omb_SRC}/cryptonote_basic/account.cpp
+    ${omb_SRC}/cryptonote_basic/cryptonote_format_utils.cpp
 
-    ${RYO_SRC}/crypto/crypto.cpp
-    ${RYO_SRC}/crypto/hash.c
-    ${RYO_SRC}/crypto/chacha.c
-    ${RYO_SRC}/crypto/crypto-ops-data.c
-    ${RYO_SRC}/crypto/crypto-ops.c
-    ${RYO_SRC}/crypto/crypto.cpp
-    ${RYO_SRC}/crypto/hash.c
-    ${RYO_SRC}/crypto/keccak.c
-    ${RYO_SRC}/crypto/random.cpp
-    ${RYO_SRC}/crypto/tree-hash.c
-    ${RYO_SRC}/crypto/pow_hash/aux_hash.c
-    ${RYO_SRC}/crypto/pow_hash/cn_slow_hash_soft.cpp
-    ${RYO_SRC}/crypto/pow_hash/cn_slow_hash_hard_intel.cpp
-    ${RYO_SRC}/crypto/pow_hash/cn_slow_hash_intel_avx2.cpp
-    ${RYO_SRC}/crypto/pow_hash/cn_slow_hash_hard_arm.cpp
+    ${omb_SRC}/crypto/crypto.cpp
+    ${omb_SRC}/crypto/hash.c
+    ${omb_SRC}/crypto/chacha.c
+    ${omb_SRC}/crypto/crypto-ops-data.c
+    ${omb_SRC}/crypto/crypto-ops.c
+    ${omb_SRC}/crypto/crypto.cpp
+    ${omb_SRC}/crypto/hash.c
+    ${omb_SRC}/crypto/keccak.c
+    ${omb_SRC}/crypto/random.cpp
+    ${omb_SRC}/crypto/tree-hash.c
+    ${omb_SRC}/crypto/pow_hash/aux_hash.c
+    ${omb_SRC}/crypto/pow_hash/cn_slow_hash_soft.cpp
+    ${omb_SRC}/crypto/pow_hash/cn_slow_hash_hard_intel.cpp
+    ${omb_SRC}/crypto/pow_hash/cn_slow_hash_intel_avx2.cpp
+    ${omb_SRC}/crypto/pow_hash/cn_slow_hash_hard_arm.cpp
 
-    ${RYO_SRC}/cryptonote_core/cryptonote_tx_utils.cpp
-    ${RYO_SRC}/common/base58.cpp
-    ${RYO_SRC}/common/threadpool.cpp
-    ${RYO_SRC}/common/aligned.c
-    ${RYO_SRC}/common/util.cpp
-    ${RYO_SRC}/common/boost_locale.cpp
-    ${RYO_SRC}/epee/src/hex.cpp
-    ${RYO_SRC}/epee/src/string_tools.cpp
-    ${RYO_SRC}/epee/src/memwipe.c
-    ${RYO_SRC}/epee/src/mlocker.cpp
-    ${RYO_SRC}/epee/src/wipeable_string.cpp
-    ${RYO_SRC}/device/device.cpp
-    ${RYO_SRC}/device/device_default.cpp
-    ${RYO_SRC}/ringct/rctOps.cpp
-    ${RYO_SRC}/ringct/rctTypes.cpp
-    ${RYO_SRC}/ringct/rctCryptoOps.c
-    ${RYO_SRC}/ringct/rctSigs.cpp
-    ${RYO_SRC}/ringct/bulletproofs.cc
-    ${RYO_SRC}/ringct/multiexp.cc
-    ${RYO_SRC}/mnemonics/electrum-words.cpp
-    ${RYO_SRC}/vtlogger/logger.cpp
-    ${RYO_SRC}/contrib/libsodium/src/crypto_verify/verify.c
+    ${omb_SRC}/cryptonote_core/cryptonote_tx_utils.cpp
+    ${omb_SRC}/common/base58.cpp
+    ${omb_SRC}/common/threadpool.cpp
+    ${omb_SRC}/common/aligned.c
+    ${omb_SRC}/common/util.cpp
+    ${omb_SRC}/common/boost_locale.cpp
+    ${omb_SRC}/epee/src/hex.cpp
+    ${omb_SRC}/epee/src/string_tools.cpp
+    ${omb_SRC}/epee/src/memwipe.c
+    ${omb_SRC}/epee/src/mlocker.cpp
+    ${omb_SRC}/epee/src/wipeable_string.cpp
+    ${omb_SRC}/device/device.cpp
+    ${omb_SRC}/device/device_default.cpp
+    ${omb_SRC}/ringct/rctOps.cpp
+    ${omb_SRC}/ringct/rctTypes.cpp
+    ${omb_SRC}/ringct/rctCryptoOps.c
+    ${omb_SRC}/ringct/rctSigs.cpp
+    ${omb_SRC}/ringct/bulletproofs.cc
+    ${omb_SRC}/ringct/multiexp.cc
+    ${omb_SRC}/mnemonics/electrum-words.cpp
+    ${omb_SRC}/vtlogger/logger.cpp
+    ${omb_SRC}/contrib/libsodium/src/crypto_verify/verify.c
 )
 
 set(boost_DIR ${CMAKE_SOURCE_DIR}/build/boost)
@@ -198,7 +198,7 @@ set(
     -s \"BINARYEN_TRAP_MODE='clamp'\" \
     -s ALLOW_MEMORY_GROWTH=1 \
     -s PRECISE_F32=1 \
-    -s 'EXPORT_NAME=\"RyoCoreCpp\"' \
+    -s 'EXPORT_NAME=\"ombCoreCpp\"' \
     "
 
     #
@@ -223,14 +223,14 @@ set(
 
 # extract the filename without an extension (NAME_WE)
 add_executable(
-	RyoCoreCpp
+	ombCoreCpp
 	${SRC_FILES}
 )
-set_target_properties(RyoCoreCpp PROPERTIES LINK_FLAGS "${EMCC_LINKER_FLAGS}")
-#set_target_properties(RyoCoreCpp PROPERTIES SUFFIX ".html")
+set_target_properties(ombCoreCpp PROPERTIES LINK_FLAGS "${EMCC_LINKER_FLAGS}")
+#set_target_properties(ombCoreCpp PROPERTIES SUFFIX ".html")
 
 target_link_libraries(
-    RyoCoreCpp
+    ombCoreCpp
     #
     # boost_atomic
     boost_chrono

@@ -1,3 +1,5 @@
+// Copyright (c) 2020, Ombre Project
+// Copyright (c) 2019, Ryo-currency
 // Copyright (c) 2014-2018, MyMonero.com
 //
 // All rights reserved.
@@ -25,26 +27,54 @@
 // INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+"use strict"
 
-module.exports = function(wallaby) {
-	process.env.NODE_ENV = "development"
+export const supported_short_codes = [
+    "en",
+    "nl",
+    "fr",
+    "es",
+    "pt",
+    "ja",
+    "it",
+    "de",
+    "ru",
+    "zh", // chinese (simplified)
+    "eo",
+    "jbo" // Lojban
+]
 
-	return {
-		name: "myomb-core-js",
-		files: [
-			"omb_utils/**/*.js",
-			"index.js",
-			"tests/borromean/test_parameters.js",
-		],
+export const mnemonic_languages = [
+    "English",
+    "Nederlands",
+    "Français",
+    "Español",
+    "Português",
+    "日本語",
+    "Italiano",
+    "Deutsch",
+    "Русский",
+    "简体中文 (中国)",
+    "Esperanto",
+    "Lojban"
+]
 
-		filesWithNoCoverageCalculated: [
-			"omb_utils/MyombCoreCpp.js",
-		],
+export function compatible_code_from_locale(locale_string) {
+    for(let i = 0; i < supported_short_codes.length; i++) {
+        const short_code = supported_short_codes[i]
+        if(locale_string.indexOf(short_code) == 0) {
+            return short_code
+        }
+    }
+    throw "Didn't find a code"
+}
 
-		tests: ["./tests/**/*spec.js"],
-
-		testFramework: "jest",
-
-		env: { type: "node", runner: "node" },
-	}
+export function compatible_code_from_language(language_string) {
+    for(let i = 0; i < mnemonic_languages.length; i++) {
+        if(language_string == mnemonic_languages[i]) {
+            return supported_short_codes[i]
+        }
+    }
+    throw "Didn't find a code"
 }

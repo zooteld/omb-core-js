@@ -30,15 +30,57 @@
 //
 "use strict"
 //
-// NOTE: The main downside to using an index.js file like this is that it will pull in all the code - rather than the consumer requiring code module-by-module
-// It's of course possible to construct your own stripped-down index.[custom name].js file for, e.g., special webpack bundling usages.
 
-export {default as omb_config} from "./omb_utils/omb_config"
-export {default as omb_utils_promise} from "./omb_utils/omb_utils"
-export {default as omb_utils_money_format} from "./omb_utils/omb_utils_money_format"
-export * as omb_utils_mnemonic_languages from "./omb_utils/omb_utils_mnemonic_languages"
-export * as omb_utils_nettype from "./omb_utils/omb_utils_nettype"
-export * as omb_utils_request_uri from "./omb_utils/omb_utils_request_uri"
-export * as omb_utils_keyimage_cache from "./omb_utils/omb_utils_keyimage_cache"
-export * as omb_utils_payment_id from "./omb_utils/omb_utils_payment_id"
-export * as omb_utils_tx_parsing from "./omb_utils/omb_utils_tx_parsing"
+const fn_names = [
+    "is_subaddress",
+    "is_integrated_address",
+    "new_payment_id",
+    "new_int_addr_from_addr_and_short_pid",
+    "decode_address",
+    "newly_created_wallet",
+    "are_equal_mnemonics",
+    "mnemonic_from_seed",
+    "seed_and_keys_from_mnemonic",
+    "validate_components_for_login",
+    // "address_and_keys_from_seed",
+    "generate_key_image",
+    "generate_key_derivation",
+    "derive_public_key",
+    "derive_subaddress_public_key",
+    "decodeRct",
+    "estimate_rct_tx_size",
+    "calculate_fee",
+    "create_signed_transaction",
+    "convert_blob",
+    "construct_block_blob",
+    "get_block_id",
+]
+
+const ombUtils_promise = new Promise((resolve, reject) => {
+    require("./ombCoreBridge").default({}).then(coreBridge_instance => {
+        if(coreBridge_instance == null) {
+            throw "Unable to make coreBridge_instance"
+        }
+        const local_fns = {}
+        for(const i in fn_names) {
+            const name = fn_names[i]
+            local_fns[name] = function() {
+                const retVal = coreBridge_instance[name].apply(coreBridge_instance, arguments) // called on the cached value
+                if(typeof retVal === "object") {
+                    const err_msg = retVal.err_msg
+                    if(typeof err_msg !== "undefined" && err_msg) {
+                        throw err_msg
+                    }
+                }
+                return retVal
+            }
+        }
+        local_fns.Module = coreBridge_instance.Module
+        resolve(local_fns)
+    }).catch(e => {
+        console.error("Error: ", e)
+        reject(e)
+    })
+})
+
+export default ombUtils_promise

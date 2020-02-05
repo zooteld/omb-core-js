@@ -1,3 +1,5 @@
+// Copyright (c) 2020, Ombre Project
+// Copyright (c) 2019, Ryo-currency
 // Copyright (c) 2014-2018, MyMonero.com
 //
 // All rights reserved.
@@ -25,26 +27,44 @@
 // INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+"use strict"
 
-module.exports = function(wallaby) {
-	process.env.NODE_ENV = "development"
+export function IsValidPaymentIDOrNoPaymentID(payment_id__orNil) {
+    if (payment_id__orNil == null || payment_id__orNil == "" || typeof payment_id__orNil == "undefined") {
+        return true // no pid
+    }
+    let payment_id = payment_id__orNil
+    if (IsValidShortPaymentID(payment_id)) {
+        return true
+    }
+    if (IsValidLongPaymentID(payment_id)) {
+        return true
+    }
+    return false
+}
 
-	return {
-		name: "myomb-core-js",
-		files: [
-			"omb_utils/**/*.js",
-			"index.js",
-			"tests/borromean/test_parameters.js",
-		],
+export function IsValidShortPaymentID(payment_id) {
+    return IsValidPaymentIDOfLength(payment_id, 16)
+}
 
-		filesWithNoCoverageCalculated: [
-			"omb_utils/MyombCoreCpp.js",
-		],
+export function IsValidLongPaymentID(payment_id) {
+    return IsValidPaymentIDOfLength(payment_id, 64)
+}
 
-		tests: ["./tests/**/*spec.js"],
-
-		testFramework: "jest",
-
-		env: { type: "node", runner: "node" },
-	}
+export function IsValidPaymentIDOfLength(payment_id, required_length) {
+    if (required_length != 16 && required_length != 64) {
+        throw "unexpected IsValidPaymentIDOfLength required_length"
+    }
+    let payment_id_length = payment_id.length
+    if (payment_id_length !== required_length) {
+        // new encrypted short
+        return false // invalid length
+    }
+    let pattern = RegExp("^[0-9a-fA-F]{" + required_length + "}$")
+    if (pattern.test(payment_id) != true) {
+        // not a valid required_length char pid
+        return false // then not valid
+    }
+    return true
 }

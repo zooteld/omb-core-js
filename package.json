@@ -1,18 +1,18 @@
 {
-    "name": "ryo-core-js",
+    "name": "omb-core-js",
     "version": "1.2.0",
-    "description": "The JS library containing Ryo crypto functions for use with lightweight wallets",
+    "description": "The JS library containing Ombre crypto functions for use with lightweight wallets",
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ryo-currency/ryo-core-js.git"
+        "url": "git+https://github.com/ombre-project/omb-core-js.git"
     },
     "scripts": {
         "format": "find . -name '*.js*' | xargs prettier --write --config ./.prettierrc --config-precedence file-override",
         "test": "mocha"
     },
     "keywords": [
-        "ryo",
+        "omb",
         "javascript",
         "js",
         "lightweight",
@@ -25,13 +25,13 @@
     ],
     "author": "MyMonero",
     "contributors": [
-        "Ryo-currency <contact@ryo-currency.com> (https://ryo-currency.com/)"
+        "Ombre Project <zooteld@gmail.com> (http://www.ombrecoin.com/)"
     ],
     "license": "See LICENSE.TXT. Copyright (c) 2014-2018, MyMonero.com. All rights reserved.",
     "bugs": {
-        "url": "https://github.com/ryo-currency/ryo-core-js/issues"
+        "url": "https://github.com/ombre-project/omb-core-js/issues"
     },
-    "homepage": "https://github.com/ryo-currency/ryo-core-js#readme",
+    "homepage": "https://github.com/ombre-project/omb-core-js#readme",
     "dependencies": {
         "big-integer": "^1.6.41"
     },
@@ -43,7 +43,7 @@
         "verbose": true,
         "coveragePathIgnorePatterns": [
             "node_modules",
-            "ryo_utils/RyoCoreCpp.js",
+            "omb_utils/ombCoreCpp.js",
             "tests/emjs/*"
         ]
     }

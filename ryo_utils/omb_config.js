@@ -1,3 +1,5 @@
+// Copyright (c) 2020, Ombre Project
+// Copyright (c) 2019, Ryo-currency
 // Copyright (c) 2014-2018, MyMonero.com
 //
 // All rights reserved.
@@ -25,26 +27,42 @@
 // INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+"use strict"
+//
+const BigInt = require("big-integer")
+//
+export default {
+    // Number of atomic units in one unit of currency. e.g. 12 => 10^12 = 1000000000000
+    coinUnitPlaces: 9,
 
-module.exports = function(wallaby) {
-	process.env.NODE_ENV = "development"
+    // Minimum number of confirmations for a transaction to show as confirmed
+    txMinConfirms: 60,
 
-	return {
-		name: "myomb-core-js",
-		files: [
-			"omb_utils/**/*.js",
-			"index.js",
-			"tests/borromean/test_parameters.js",
-		],
+    // Currency symbol
+    coinSymbol: "OMB",
 
-		filesWithNoCoverageCalculated: [
-			"omb_utils/MyombCoreCpp.js",
-		],
+    // OpenAlias prefix
+    openAliasPrefix: "omb",
 
-		tests: ["./tests/**/*spec.js"],
+    // Currency name
+    coinName: "Ombre",
 
-		testFramework: "jest",
+    // Payment URI Prefix
+    coinUriPrefix: "omb:",
 
-		env: { type: "node", runner: "node" },
-	}
+    // Prefix code for addresses
+    addressPrefix: 925524,
+    integratedAddressPrefix: 958292,
+    subaddressPrefix: 111002,
+
+    // Dust threshold in atomic units
+    // 2*10^6 used for choosing outputs/change - we decompose all the way down if the receiver wants now regardless of threshold
+    dustThreshold: BigInt("2000000"),
+
+    // Maximum block number, used for tx unlock time
+    maxBlockNumber: 500000000,
+
+    // Average block time in seconds, used for unlock time estimation
+    avgBlockTime: 60,
 }
